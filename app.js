@@ -1,4 +1,6 @@
 let grupoAmigos = [];
+let listaAmigos = document.getElementById('listaAmigos');
+let listaResultado = document.getElementById('resultado');
 
 function agregarAmigo(){
     let nombreAmigo = document.getElementById('amigo').value;
@@ -15,13 +17,12 @@ function agregarAmigo(){
 }
 
 function agregarALista(){
-    let lista = document.getElementById('listaAmigos');
-    lista.innerHTML = '';
+    listaAmigos.innerHTML = '';
 
-    for (let n of grupoAmigos){
-        let amigo = document.createElement('li');
-        amigo.textContent = n;
-        lista.appendChild(amigo);
+    for (let amigo of grupoAmigos){
+        let nuevoElemento = document.createElement('li');
+        nuevoElemento.textContent = amigo;
+        listaAmigos.appendChild(nuevoElemento);
     }
     return;
 }
@@ -29,19 +30,16 @@ function agregarALista(){
 function sortearAmigo(){
     let numeroAmigos = grupoAmigos.length;
     let numeroRandom = Math.floor(Math.random()*numeroAmigos);
-    lista = document.getElementById('resultado');
 
     if(numeroAmigos == 0){
         alert('Se necesita al menos un nombre para sortear.');
     } else{
-        document.getElementById('listaAmigos').innerHTML = '';
-        lista.innerHTML = '';
+        listaAmigos.innerHTML = '';
+        listaResultado.innerHTML = '';
 
-        let a = document.createElement('li');
-        a.textContent = 'Gana ' + grupoAmigos[numeroRandom];
-        lista.appendChild(a);
+        let nuevoElemento = document.createElement('li');
+        nuevoElemento.textContent = 'El amigo secreto sorteado es: ' + grupoAmigos[numeroRandom];
+        listaResultado.appendChild(nuevoElemento);
     }
-
-    console.log(numeroAmigos)
-    console.log(numeroRandom)
+    return;
 }
